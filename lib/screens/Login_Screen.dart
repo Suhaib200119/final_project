@@ -116,19 +116,33 @@ class Login_Screen extends StatelessWidget {
                                     ),
                                     ),
                                     onPressed: () async{
-
-
                                       if(_formKey.currentState!.validate()){
                                         String email=_controller_email.text.toString().toLowerCase();
                                         String password=_controller_password.text.toString().toLowerCase();
                                         FirebaseAuth auth=  FirebaseAuth.instance;
                                         UserCredential result;
+                                        showDialog(context: context, builder: (context){
+
+                                          return  AlertDialog(
+                                            content: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                CircularProgressIndicator(),
+                                                Text("جاري التحميل",style: TextStyle(color: Colors.grey,fontSize: 24),)
+                                              ],
+                                            ),
+                                          );
+                                        });
                                         try{
                                        result=  await auth.signInWithEmailAndPassword(email: email, password: password);
+
                                        Navigator.pushReplacement(
                                          context,
                                          MaterialPageRoute(builder: (context)  {return Home_Screen();}),
                                        );
+
+
+
                                         }on FirebaseAuthException catch(exception){
                                           showAlertDialog(context,"يوجد خطأ في اسم المستخدم أوكلمة المرور","login");
                                         }

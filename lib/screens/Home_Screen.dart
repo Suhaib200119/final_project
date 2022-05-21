@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:final_project_flutter_iug/screens/Credit_Collection.dart';
 import 'package:flutter/material.dart';
 
@@ -23,23 +24,24 @@ class Home_Screen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                new Image.asset("assets/images/Logo_Home_Screen.png"),
-                Text("مرحباً بك في تطبيق إدارة المولدات",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+               FadeInDownBig(child: Image.asset("assets/images/Logo_Home_Screen.png"),duration: Duration(seconds: 2),),
+               FadeInUpBig(child:  Text(" مرحباً بك في تطبيق إدارة المولدات",
+                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                 duration: Duration(seconds: 2),),
                 SizedBox(
                   height: 10,
                 ),
-                container_Button_Home_Screen(
+                FadeInLeftBig(child: container_Button_Home_Screen(
                     text: "قراءة العداد",
                     backgroundColor: Colors.orangeAccent,
                     ctx: context,
                     function: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return Meter_Reading();
-                      }));
-                    }),
-                container_Button_Home_Screen(
+                            return Meter_Reading();
+                          }));
+                    }),duration: Duration(seconds: 2),),
+                FadeInRightBig(child: container_Button_Home_Screen(
                     text: "تحصيل الأرصدة",
                     backgroundColor: Colors.blueAccent,
                     ctx: context,
@@ -50,19 +52,19 @@ class Home_Screen extends StatelessWidget {
                           return Credit_Collection();
                         }),
                       );
-                    }),
-                container_Button_Home_Screen(
-                    text: "المشتركين",
-                    backgroundColor: Colors.redAccent,
-                    ctx: context,
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return Customer_Information();
-                        }),
-                      );
-                    }),
+                    }),duration: Duration(seconds: 2),),
+               FadeInLeftBig(child:  container_Button_Home_Screen(
+                   text: "المشتركين",
+                   backgroundColor: Colors.redAccent,
+                   ctx: context,
+                   function: () {
+                     Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context) {
+                         return Customer_Information();
+                       }),
+                     );
+                   }),duration: Duration(seconds: 2),)
               ],
             ),
           ),

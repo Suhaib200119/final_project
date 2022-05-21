@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:final_project_flutter_iug/provider_folder/Provider_Class.dart';
 import 'package:final_project_flutter_iug/screens/Home_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,7 +26,7 @@ class Login_Screen extends StatelessWidget {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      new Image.asset("assets/images/Logo_Home_Screen.png"),
+                      FadeInUp(child:Image.asset("assets/images/Logo_Home_Screen.png"),duration: Duration(seconds: 2)),
                       new Text("تطبيق إدارة المولدات",style: TextStyle(
                         fontSize: 24,
                         wordSpacing:1.5,
@@ -37,7 +38,7 @@ class Login_Screen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
-                                TextFormField(
+                                FadeInLeftBig(child: TextFormField(
                                   controller: _controller_email,
                                   decoration: const InputDecoration(
                                     hintText:"البريد الإلكتروني" ,
@@ -49,11 +50,11 @@ class Login_Screen extends StatelessWidget {
                                       ),
 
                                     ),
-                                      focusedBorder:OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.grey,
-                                            ),
+                                    focusedBorder:OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
                                       ),
+                                    ),
 
                                   ),
                                   keyboardType: TextInputType.emailAddress,
@@ -63,19 +64,19 @@ class Login_Screen extends StatelessWidget {
 
                                     }
                                   },
-                                ),
+                                ),duration: Duration(seconds: 2),),
                                 SizedBox(height: 10,),
-                                TextFormField(
+                                FadeInRightBig(child: TextFormField(
                                   controller: _controller_password,
                                   decoration:  InputDecoration(
-                                   fillColor: Colors.red,
+                                    fillColor: Colors.red,
                                     hintText:"كلمة المرور" ,
                                     prefixIcon: Icon(Icons.lock),
                                     suffixIcon: IconButton(
-                                        onPressed: (){
-                                          Provider.of<MyProvider>(context,listen: false).changeValue();
-                                          },
-                                        icon: Provider.of<MyProvider>(context,listen: false).notVisable?Icon(Icons.visibility):Icon(Icons.visibility_off),
+                                      onPressed: (){
+                                        Provider.of<MyProvider>(context,listen: false).changeValue();
+                                      },
+                                      icon: Provider.of<MyProvider>(context,listen: false).notVisable?Icon(Icons.visibility):Icon(Icons.visibility_off),
                                     ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -91,17 +92,16 @@ class Login_Screen extends StatelessWidget {
                                   ),
                                   keyboardType: TextInputType.visiblePassword,
                                   obscureText:  Provider.of<MyProvider>(context).notVisable,
-                                validator: (String? value){
+                                  validator: (String? value){
                                     if(value!.trim().isEmpty){
                                       return 'كلمة المرور مطلوبة !';
 
                                     }
-                                },
-                                ),
+                                  },
+                                ),duration: Duration(seconds: 2),),
                                 SizedBox(height: 10,),
-                                Text("هل نسيت كلمة المرور"),
                                 SizedBox(height: 10,),
-                                Container(
+                                FadeInDown (child: Container(
                                   decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.all(Radius.circular(50)),
                                   ),
@@ -110,7 +110,7 @@ class Login_Screen extends StatelessWidget {
                                     color: Colors.deepOrangeAccent,
                                     splashColor: Colors.orange,
                                     child: Text(
-                                        "دخول",style:  TextStyle(
+                                      "دخول",style:  TextStyle(
                                       fontSize: 32,
                                       color: Colors.white,
                                     ),
@@ -134,12 +134,12 @@ class Login_Screen extends StatelessWidget {
                                           );
                                         });
                                         try{
-                                       result=  await auth.signInWithEmailAndPassword(email: email, password: password);
+                                          result=  await auth.signInWithEmailAndPassword(email: email, password: password);
 
-                                       Navigator.pushReplacement(
-                                         context,
-                                         MaterialPageRoute(builder: (context)  {return Home_Screen();}),
-                                       );
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(builder: (context)  {return Home_Screen();}),
+                                          );
 
 
 
@@ -153,7 +153,7 @@ class Login_Screen extends StatelessWidget {
                                     },
 
                                   ),
-                                ),
+                                ),duration: Duration(seconds: 2),),
                               ],
                             ),
                           )
